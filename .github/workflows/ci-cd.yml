@@ -41,4 +41,20 @@ jobs:
           path: node_modules
           key: node-modules-${{ hashFiles('package-lock.json') }}
           restore-keys: node-modules-
+
+  security:
+    name: NPM Dependency Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code 
+        uses: actions/checkout@v4
+
+      - name: Restore cached dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Run NPM Dependency Audit
+        run: npm audit --audit-level=critical
           
