@@ -172,6 +172,14 @@ jobs:
           ignore-unfixed: true
           vuln-type: 'os,library'
           severity: 'CRITICAL,HIGH'
+          output: trivy.json
+          color: 'always'
+      
+      - name: Upload Trivy vulnerability scanner results
+        uses: actions/upload-artifact@v4
+        with:
+          name: trivy-results
+          path: trivy.json
       
       - name: Push Docker Image 
         uses: docker/build-push-action@v6
