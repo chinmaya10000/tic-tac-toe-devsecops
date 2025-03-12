@@ -176,6 +176,7 @@ jobs:
           color: 'always'
       
       - name: Upload Trivy vulnerability scanner results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: trivy-results
